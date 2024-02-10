@@ -1,0 +1,150 @@
+#button2,
+#button1 {
+    background-color: aqua;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 12%;
+    display: inline-block;
+}
+
+#button {
+    border-radius: 15px;
+    background-color: #28e15f;
+    border-color: burlywood;
+    size: 30px;
+    font-size: 20px;
+}
+
+#button:hover {
+    background-color: #82b929;
+}
+
+#jobs {
+    display: inline-block;
+    padding: 10px;
+    width: 400px;
+    border: solid rgb(173, 76, 76);
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-left: 0.5%;
+    margin-bottom: 2%;
+    background-color: rgb(234, 219, 219);
+    border-radius: 3%;
+
+}
+
+hr {
+    border: none;
+    height: 5px;
+    background-color: black;
+    line-height: 2%;
+}
+
+/* styles.css (or your component-specific CSS file) */
+
+.details {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(192, 123, 123, 0.1);
+    margin-top: 20px;
+    border: solid #976f6f;
+    display: inline-block;
+    /* width: 100%; */
+    margin-bottom: 2%;
+    margin-left: 1%;
+    margin-right: 2%;
+}
+
+
+.details p {
+    color: #666;
+    margin-bottom: 8px;
+    font-size: 20px;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 768px) {
+    pre {
+        white-space: normal;
+        /* Allow text to wrap */
+    }
+}
+
+/* Add any other styling as needed */
+
+header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+header p {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+.container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 30%;
+}
+
+
+.container #button4 {
+    background-color: #4caf50;
+    color: #fff;
+    width: 80px;
+    height: 35px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+table{
+    align-items: center;
+}
+#applyformtitel{
+    display: inline;
+}
+.container div {
+    margin-bottom: 2%;
+}
+
+.container select{
+    width: 189px;
+    height: 30px;
+}
+.apply{
+    background-color: rgb(251, 235, 214);
+    width: 100%;
+    align-items: center;
+    margin-bottom: 1.5%;
+}
+span{
+    font-size: small;
+    color: red;
+    flex: 1px;
+}
+
+
+
+
+
+
+/* your-component.component.css */
+.ng-valid {
+  border: 2px solid green;
+}
+
+.ng-invalid {
+  border: 2px solid red;
+}

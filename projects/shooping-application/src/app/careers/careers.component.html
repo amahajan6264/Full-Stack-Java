@@ -1,0 +1,208 @@
+<!-- career.component.html -->
+<header>
+    <h1>Explore Our Current Job Openings</h1>
+    <p>Discover exciting opportunities to join our talented team.</p>
+</header>
+<div *ngFor="let job of jobs let i = index" id="jobs">
+
+    <h2>{{i+1}} : {{ job.title }}</h2>
+    <p>{{ job.description }}</p>
+    <!-- Add more details like location, department, etc. -->
+    <button (click)="applyJobForm(job.title)" id="button1">Apply now</button>
+    <button (click)="showJobDetails(job.title)" id="button2">View Details</button>
+
+</div>
+<hr class="line" *ngIf="viewDetail">
+<div *ngIf="viewDetail" #detailsSection class="details">
+    <pre>
+        <h3>Title :{{ selectedJob.title }}</h3>
+        <p>Description : {{ selectedJob.description }}</p>
+        <p>Experience :  {{selectedJob.experience}}</p>
+        <p>Location   : {{selectedJob.location}}</p>
+        <p>Requirement: {{selectedJob.requirement}}</p>
+        <p>Deadline   : {{selectedJob.deadline}}</p>
+    </pre>
+    <button (click)="applyJobForm(selectedJob.title)" id="button">Apply now</button>
+</div>
+<hr *ngIf="viewDetail">
+<hr *ngIf="applyForm">
+<div *ngIf="applyForm" #applyJobSection class="apply">
+    <div id="mainfrm">
+        <form action="#" class="container" [formGroup]="frmSave">
+            <h2 id="applyformtitel">Apply For {{title}}</h2>
+            <table>
+                <tr>
+                    <td>
+                        <div class="name">
+                            <label for="">Name<span>*</span></label>
+                            <input formControlName="name" [class.ng-valid]="name.valid && name.touched"
+                                [class.ng-invalid]="name.invalid && name.touched">
+                            <div *ngIf="name.invalid && name.touched">
+                                <span *ngIf="name.errors?.['required']">Name is required</span>
+                                <span *ngIf="name.errors?.['minlength']">Name is atlist three letter</span>
+                                <span *ngIf="name.errors?.['maxlength']">Name is to Long 30 letter are allow</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="email">
+                            <label for="">Email<span>*</span></label>
+                            <input type="text" formControlName="email" [class.ng-valid]="email.valid && email.touched"
+                                [class.ng-invalid]="email.invalid && email.touched">
+                            <div *ngIf="email.invalid && email.touched">
+                                <span *ngIf="email.errors?.['required']">Email is required</span>
+                                <span *ngIf="email.errors?.['pattern']">Email must be in pattern</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="age">
+                            <label for="">Age<span>*</span></label>
+                            <input type="text" formControlName="age" [class.ng-valid]="age.valid && age.touched"
+                                [class.ng-invalid]="age.invalid && age.touched">
+                            <div *ngIf="age.invalid && age.touched">
+                                <span *ngIf="age.errors?.['required']">Age is required</span>
+                                <span *ngIf="age.errors?.['maxlength']">Length must be two</span>
+                                <span *ngIf="age.errors?.['minlength']">Length must be two</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="experience">
+                            <label for="">Experience<span>*</span></label>
+                            <input type="text" formControlName="experience"
+                                [class.ng-valid]="experience.valid && experience.touched"
+                                [class.ng-invalid]="experience.invalid && experience.touched">
+                            <div *ngIf="experience.invalid && experience.touched">
+                                <span *ngIf="experience.errors?.['required']">experience is required</span>
+                                <span *ngIf="experience.errors?.['minlength']">Length must be 6</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="Address">
+                            <label for="">Address<span>*</span></label>
+                            <input type="text" formControlName="address"
+                                [class.ng-valid]="address.valid && address.touched"
+                                [class.ng-invalid]="address.invalid && address.touched">
+                            <div *ngIf="address.invalid && address.touched">
+                                <span *ngIf="address.errors?.['required']">Experience is required</span>
+                                <span *ngIf="address.errors?.['minlength']">Length is more then be 6</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label for="">Country<span>*</span></label>
+                            <select type="text" (change)="displayState($event)" formControlName="country"
+                                [class.ng-valid]="country.valid && country.touched"
+                                [class.ng-invalid]="country.invalid && country.touched">
+                                >
+                                <option disabled selected>not selected</option>
+                                <option *ngFor="let country of countries | keyvalue" [value]="country.value">
+                                    {{ country.value }}</option>
+                            </select>
+                            <div *ngIf="country.invalid && country.touched">
+                                <span *ngIf="country.errors?.['required']">Select the country</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label for="">State<span>*</span></label>
+                            <select type="text" (change)="displayCity($event)" formControlName="state"
+                                [class.ng-valid]="state.valid && state.touched"
+                                [class.ng-invalid]="state.invalid && state.touched">
+                                >
+                                <option disabled selected>not selected</option>
+                                <option *ngFor="let state of states | keyvalue" [value]="state.value">
+                                    {{ state.value }}</option>
+                            </select>
+                            <div *ngIf="state.invalid && state.touched">
+                                <span *ngIf="state.errors?.['required']">Select the state</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label for="">PinCode<span>*</span></label>
+                            <input type="text" placeholder="XXXXXX" formControlName="pincode"
+                                [class.ng-valid]="frmSave.get('pincode')?.valid && frmSave.get('pincode')?.touched"
+                                [class.ng-invalid]="frmSave.get('pincode')?.invalid && frmSave.get('pincode')?.touched">
+                            <div *ngIf="pincode.invalid && pincode.touched">
+                                <span *ngIf="pincode.errors?.['required']">PinCode is required</span>
+                                <span *ngIf="pincode.errors?.['maxlength']">Length must be 6</span>
+                                <span *ngIf="pincode.errors?.['minlength']">Length must be 6</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label for="">City<span>*</span></label>
+                            <select type="text" (change)="displayVillage($event)" formControlName="city"
+                                [class.ng-valid]="city.valid && city.touched"
+                                [class.ng-invalid]="city.invalid && city.touched">
+                                >
+                                <option disabled selected>not selected</option>
+                                <option *ngFor="let city of cities | keyvalue" [value]="city.value">
+                                    {{ city.value }}</option>
+                            </select>
+                            <div *ngIf="city.invalid && city.touched">
+                                <span *ngIf="city.errors?.['required']">Select the state</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label for="">Village<span>*</span></label>
+                            <select type="text" formControlName="village"
+                                [class.ng-valid]="village.valid && village.touched"
+                                [class.ng-invalid]="village.invalid && village.touched">
+                                >
+                                <option disabled selected>not selected</option>
+                                <option *ngFor="let village of villages | keyvalue" [value]="village.value">
+                                    {{ village.value }}</option>
+                            </select>
+                            <div *ngIf="village.invalid && village.touched">
+                                <span *ngIf="village.errors?.['required']">Select the village</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="resume">
+                            <label for="">Resume</label>
+                            <input type="file" formControlName="resume"
+                                [class.ng-valid]="resume.valid && resume.touched"
+                                [class.ng-invalid]="resume.invalid && resume.touched">
+                            <div *ngIf="resume.invalid && resume.touched">
+                                <span *ngIf="resume.errors?.['required']">Select the Resume</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <button id="button4" type="submit" [disabled]="frmSave.invalid">Apply</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <button id="button4" type="reset">Reset</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
