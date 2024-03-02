@@ -44,7 +44,6 @@ hr {
 }
 
 /* styles.css (or your component-specific CSS file) */
-
 .details {
     background-color: #f4f4f4;
     padding: 20px;
@@ -92,6 +91,7 @@ header p {
     margin: 10px 0;
     font-size: 1.5em;
 }
+
 .container label {
     display: block;
     margin-bottom: 10px;
@@ -109,27 +109,32 @@ header p {
     cursor: pointer;
     text-align: center;
 }
-table{
+
+table {
     align-items: center;
 }
-#applyformtitel{
+
+#applyformtitel {
     display: inline;
 }
+
 .container div {
     margin-bottom: 2%;
 }
 
-.container select{
+.container select {
     width: 189px;
     height: 30px;
 }
-.apply{
+
+.apply {
     background-color: rgb(251, 235, 214);
     width: 100%;
     align-items: center;
     margin-bottom: 1.5%;
 }
-span{
+
+span {
     font-size: small;
     color: red;
     flex: 1px;
@@ -142,9 +147,9 @@ span{
 
 /* your-component.component.css */
 .ng-valid {
-  border: 2px solid green;
+    border: 2px solid green;
 }
 
 .ng-invalid {
-  border: 2px solid red;
+    border: 2px solid red;
 }

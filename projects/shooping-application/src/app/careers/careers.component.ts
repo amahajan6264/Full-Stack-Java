@@ -21,23 +21,23 @@ export class CareersComponent implements OnInit {
   public cities: any;
   public villages: any;
   public selectedCountry: string = '';
-
+  public saveMsg: string = '';
   @ViewChild('detailsSection') detailsSection!: ElementRef;
   @ViewChild('applyJobSection') applyJobSection!: ElementRef;
   constructor(private service: GlobalhttpserviceService, private fb: FormBuilder) { }
 
   public frmSave = this.fb.group({
-    name:  this.fb.control('', [Validators.required, Validators.maxLength(30), Validators.minLength(3),Validators.pattern(/^[a-zA-Z ]*$/)]),
-    email: this.fb.control('', [Validators.required,Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)]),
-    age:   this.fb.control('',[Validators.required,Validators.maxLength(2),Validators.minLength(2)]),
-    pincode:this.fb.control('',[Validators.required,Validators.maxLength(6),Validators.minLength(6)]),
-    experience:this.fb.control('',[Validators.required]),
-    address:this.fb.control('',[Validators.required,Validators.minLength(5)]),
-    country:this.fb.control('',[Validators.required]),
-    state:this.fb.control('',Validators.required),
-    city:this.fb.control('',Validators.required),
-    village:this.fb.control('',[Validators.required]),
-    resume:this.fb.control('',[Validators.required])
+    name: this.fb.control('', [Validators.required, Validators.maxLength(30), Validators.minLength(3), Validators.pattern(/^[a-zA-Z ]*$/)]),
+    email: this.fb.control('', [Validators.required, Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)]),
+    age: this.fb.control('', [Validators.required, Validators.maxLength(2), Validators.minLength(2)]),
+    pincode: this.fb.control('', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]),
+    experience: this.fb.control('', [Validators.required]),
+    address: this.fb.control('', [Validators.required, Validators.minLength(5)]),
+    country: this.fb.control('', [Validators.required]),
+    state: this.fb.control('', Validators.required),
+    city: this.fb.control('', Validators.required),
+    village: this.fb.control('', [Validators.required]),
+    resume: this.fb.control('', [Validators.required])
   });
 
   ngOnInit(): void {
@@ -82,6 +82,13 @@ export class CareersComponent implements OnInit {
     }, 20);
   }
 
+  applyJob(frmSave:any) {
+    alert(JSON.stringify(frmSave));
+    this.service.applyJob(frmSave).subscribe(data => {
+      this.saveMsg=data;
+    });
+  }
+
   displayState(event: any) {
     const keyForTargetValue = Object.keys(this.countries).find(key => this.countries[key] === event.target.value);
     this.service.getState(keyForTargetValue).subscribe(data => {
@@ -103,9 +110,7 @@ export class CareersComponent implements OnInit {
     });
   }
 
-  applyJob() {
-    alert()
-  }
+
 
   get name() {
     return this.frmSave.get('name') as FormControl;

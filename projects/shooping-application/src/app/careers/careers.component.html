@@ -26,9 +26,9 @@
 </div>
 <hr *ngIf="viewDetail">
 <hr *ngIf="applyForm">
-<div *ngIf="applyForm" #applyJobSection class="apply">
+<div *ngIf="applyForm" #applyJobSection class="apply" >
     <div id="mainfrm">
-        <form action="#" class="container" [formGroup]="frmSave">
+        <form action="#" class="container" [formGroup]="frmSave" (ngSubmit)="applyJob(frmSave.value)" autocomplete="off">
             <h2 id="applyformtitel">Apply For {{title}}</h2>
             <table>
                 <tr>
@@ -36,7 +36,7 @@
                         <div class="name">
                             <label for="">Name<span>*</span></label>
                             <input formControlName="name" [class.ng-valid]="name.valid && name.touched"
-                                [class.ng-invalid]="name.invalid && name.touched">
+                                [class.ng-invalid]="name.invalid && name.touched" autocomplete="off">
                             <div *ngIf="name.invalid && name.touched">
                                 <span *ngIf="name.errors?.['required']">Name is required</span>
                                 <span *ngIf="name.errors?.['minlength']">Name is atlist three letter</span>
@@ -193,7 +193,7 @@
                 <tr>
                     <td>
                         <div>
-                            <button id="button4" type="submit" [disabled]="frmSave.invalid">Apply</button>
+                            <button id="button4" type="submit">Apply</button>
                         </div>
                     </td>
                     <td>

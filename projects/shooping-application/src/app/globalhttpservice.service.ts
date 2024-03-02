@@ -33,5 +33,10 @@ export class GlobalhttpserviceService {
   getVillage(villageId: any): Observable<any> {
     return this.http.get(`${this.BaseUrl}village/${villageId}`);
   }
-  
+  applyJob(frmsave:any):Observable<any>{
+    alert(JSON.stringify(frmsave));
+    return this.http.post(`${this.BaseUrl}` + 'applyJob', frmsave);
+  }
+  /*==============================material as service================================ */
+
 }
